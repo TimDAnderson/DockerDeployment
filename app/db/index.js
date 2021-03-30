@@ -1,7 +1,7 @@
 var mysql = require('mysql');
 
 var connection = mysql.createConnection({
-  host: 'insidecomposedb13',
+  host: 'sqlcontainer',
   user: 'root',
   password: 'root',
   database: 'app_db'

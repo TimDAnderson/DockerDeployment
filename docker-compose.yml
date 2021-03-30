@@ -1,7 +1,7 @@
 version: '3'
  
 services:
-  insidecomposedb13:
+  sqlcontainer:
     image: mysql:5.7
     restart: always
     environment:
@@ -12,23 +12,23 @@ services:
     ports:
       - "6033:3306"
     volumes: 
-      - db-config1:/etc/mysql
-      - db-data1:/var/lib/mysql
+      - db-config2:/etc/mysql
+      - db-data2:/var/lib/mysql
       - ./db/backup/files/:/data_backup/data
 
   app:
     build:
       context: .
       dockerfile: ./app/Dockerfile
-    image: node-mysql-app-tester13
+    image: node-mysql-app-demo2
     ports:
       - 3000:3000
 
     depends_on:
-      - insidecomposedb13
+      - sqlcontainer
     stdin_open: true
     tty: true
 
 volumes: 
-  db-config1:
-  db-data1:
+  db-config2:
+  db-data2:
