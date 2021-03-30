@@ -1,0 +1,34 @@
+version: '3'
+ 
+services:
+  insidecomposedb13:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: app_db
+      MYSQL_USER: root_user
+      MYSQL_PASSWORD: abc123
+    ports:
+      - "6033:3306"
+    volumes: 
+      - db-config1:/etc/mysql
+      - db-data1:/var/lib/mysql
+      - ./db/backup/files/:/data_backup/data
+
+  app:
+    build:
+      context: .
+      dockerfile: ./app/Dockerfile
+    image: node-mysql-app-tester13
+    ports:
+      - 3000:3000
+
+    depends_on:
+      - insidecomposedb13
+    stdin_open: true
+    tty: true
+
+volumes: 
+  db-config1:
+  db-data1:

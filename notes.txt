@@ -1,0 +1,5 @@
+mysql
+docker exec -it 0ac05506b53a499b05b77b044a95d6a36ec8b96d28c82ade96e401d7a0f3ba03 mysql -uroot -p
+
+express vm
+docker exec -it 66e62e2d27f4e7be91be92ac4d047e6fd365d839a69de1fbdfa6eb947a6f0c22 mysql -uroot -p
