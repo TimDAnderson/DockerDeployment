@@ -4,13 +4,14 @@ services:
   sqlcontainer:
     image: mysql:5.7
     restart: always
+    env_file: ./app/.env
     environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: app_db
-      MYSQL_USER: root_user
-      MYSQL_PASSWORD: abc123
+      MYSQL_ROOT_PASSWORD: $MYSQL_ROOT_PASSWORD
+      MYSQL_DATABASE: $MYSQL_DATABASE
+      MYSQL_USER: $MYSQL_USER
+      MYSQL_PASSWORD: $MYSQL_PASSWORD
     ports:
-      - "6033:3306"
+      - $MYSQL_LOCAL_PORT:$MYSQL_DOCKER_PORT
     volumes: 
       - db-config2:/etc/mysql
       - db-data2:/var/lib/mysql
@@ -20,10 +21,10 @@ services:
     build:
       context: .
       dockerfile: ./app/Dockerfile
-    image: node-mysql-app-demo2
+    image: node-mysql-app-demo3
+    env_file: ./app/.env
     ports:
-      - 3000:3000
-
+      - $NODE_LOCAL_PORT:$NODE_DOCKER_PORT
     depends_on:
       - sqlcontainer
     stdin_open: true

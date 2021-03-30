@@ -6,6 +6,6 @@ A docker-compose file creates two containers.  One is a mysql service based on a
 
 After creating the containers the db is seeded with a lot of fake data.  Loading table schemas and seeding was an interesting challenge because it requires tunneling into the docker environment.
 
-Finally, requests can be made to the server.  
+Finally, requests can be made to the server through the exposed port 3000.  
 
 If you find this repo useful please give it a star / like.
