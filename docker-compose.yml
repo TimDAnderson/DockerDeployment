@@ -21,7 +21,7 @@ services:
     build:
       context: .
       dockerfile: ./app/Dockerfile
-    image: timdanderson1/myfirstdeployment
+    image: timdanderson1/myfirstdeployment:1.0
     env_file: ./app/.env
     ports:
       - 3000:3000
